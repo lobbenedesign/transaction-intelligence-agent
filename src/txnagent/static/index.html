@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Console — Transaction Intelligence Agent</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div id="onboarding-backdrop" class="onboarding-backdrop" role="dialog" aria-modal="true" hidden>
+    <div class="onboarding-modal">
+      <span class="onboarding-kicker">Progetto di approfondimento personale</span>
+      <h2>A cosa serve questa console</h2>
+      <p>
+        Un estratto conto è una lista di righe, non una risposta. Questo agente
+        legge lo storico transazioni, riconosce abbonamenti ricorrenti, nota
+        quando un abbonamento è aumentato di prezzo senza che nessuno lo notasse,
+        e segnala quando due o più abbonamenti attivi coprono la stessa categoria
+        (spesa ridondante) — e lo fa rispondendo a domande in linguaggio naturale,
+        con la traccia esatta degli strumenti usati per arrivare alla risposta.
+      </p>
+      <h3>Come si usa</h3>
+      <ul>
+        <li>Fai una domanda in chat, es. "quanto spendo in abbonamenti ogni mese?".</li>
+        <li>Clicca <strong>"mostra i passaggi"</strong> sotto ogni risposta per vedere esattamente quali strumenti l'agente ha chiamato e con quali argomenti — trasparenza che i comparabili commerciali quasi mai mostrano.</li>
+        <li>Il pannello a destra mostra abbonamenti ricorrenti, aumenti di prezzo rilevati e sovrapposizioni di spesa, aggiornati indipendentemente dalla chat.</li>
+      </ul>
+      <h3>Perché l'ho costruita</h3>
+      <p>
+        Leggendo articoli online sul mercato bancario mi sono chiesto come potrebbero
+        essere organizzati davvero software e servizi per rispondere a esigenze
+        bancarie concrete — in questo caso, come un agente possa spiegare le proprie
+        azioni invece di restare una scatola nera. Questo repository è il tentativo
+        di costruirlo per intero, motore di analisi e interfaccia, non solo
+        descriverlo.
+      </p>
+      <button id="onboarding-dismiss" class="onboarding-dismiss" autofocus>Ho capito, apri la console</button>
+    </div>
+  </div>
+
+  <div class="console">
+    <header>
+      <div class="header-row">
+        <div>
+          <h1>Console — analisi transazionale conversazionale</h1>
+          <p class="subtitle">Chiedi in linguaggio naturale. Ogni risposta mostra la traccia degli strumenti usati per arrivarci.</p>
+        </div>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Cambia tema" title="Cambia tema">☀︎</button>
+      </div>
+      <div id="stat-strip" class="stat-strip"></div>
+    </header>
+
+    <div class="layout">
+      <section class="chat-panel">
+        <div id="chat-log" class="chat-log"></div>
+        <form id="ask-form" class="ask-form">
+          <input id="query-input" type="text" placeholder="Es. quali abbonamenti sono aumentati di prezzo?" autocomplete="off" />
+          <button type="submit">Chiedi</button>
+        </form>
+        <div class="suggestions" id="suggestions"></div>
+      </section>
+
+      <aside class="insights-panel">
+        <div class="panel-header"><h2>Abbonamenti ricorrenti</h2></div>
+        <ul id="recurring-list" class="insight-list"></ul>
+
+        <div class="panel-header panel-header-spaced"><h2>Aumenti di prezzo rilevati</h2></div>
+        <ul id="price-list" class="insight-list"></ul>
+
+        <div class="panel-header panel-header-spaced"><h2>Sovrapposizioni di spesa</h2></div>
+        <ul id="overlap-list" class="insight-list"></ul>
+      </aside>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

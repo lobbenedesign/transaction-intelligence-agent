@@ -1,0 +1,14 @@
+services:
+  txnagent:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      # Set OPENAI_API_KEY to upgrade from FakeLLM to a real model — the
+      # agent logic and tool schema are unchanged either way (docs/adr/0001).
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/healthz')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
