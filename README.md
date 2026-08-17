@@ -10,6 +10,27 @@ chiamata a strumento, non solo della risposta finale.
 [![Python](https://img.shields.io/badge/python-3.11-blue)]()
 [![Coverage](https://img.shields.io/badge/coverage-96%25-green)]()
 
+## In breve
+
+Leggendo articoli online sul mercato bancario mi sono chiesto come potrebbe essere
+organizzato davvero un agente che risponde a domande sulle proprie spese in linguaggio
+naturale — non solo "quanto ho speso questo mese", ma cose che nessuno controlla mai a
+mano: quali abbonamenti sono aumentati di prezzo senza che me ne accorgessi, se ho due
+abbonamenti che coprono la stessa cosa. Questo repository è la mia risposta: un agente
+Python/FastAPI che usa strumenti reali (non solo un prompt) per rispondere, e mostra
+esattamente quali strumenti ha chiamato per arrivare a ogni risposta — trasparenza che
+la maggior parte delle app di finanza personale non offre.
+
+**A cosa può servire**: è un esempio concreto di come costruire un agente LLM
+ispezionabile sopra dati transazionali — utile per chi vuole vedere come si struttura un
+tool-calling loop con audit trail, non solo leggerne la teoria.
+
+![Onboarding della console con abbonamenti ricorrenti rilevati](docs/screenshots/onboarding.png)
+
+![Risposta in chat con traccia degli strumenti chiamati, espansa](docs/screenshots/console-in-use.png)
+
+---
+
 ## Problema
 
 Il rilevamento automatico di abbonamenti e pagamenti ricorrenti dai dati
@@ -202,10 +223,11 @@ Per usare un vero modello invece di `FakeLLM`, basta esportare
 
 ## Nel contesto del portfolio
 
-Questo repo è il primo dei cinque progetti di [`banca-sandbox`](../),
-un ecosistema di sistemi bancari agganciati alle normative su cui gli AI/IT
+Questo repo è uno dei sette progetti di
+[`banca-sandbox`](https://github.com/lobbenedesign/banca-sandbox), un
+ecosistema di sistemi bancari agganciati alle normative su cui gli AI/IT
 team delle banche italiane stanno investendo: instant payments (ISO 20022 +
 Verification of Payee), credit scoring conforme all'AI Act, resilienza DORA,
-antifrode su grafo. Ogni repo condivide lo stesso standard: numeri misurati,
-non aggettivi; ADR per ogni decisione non ovvia; `make demo` come unico
-comando richiesto per vedere il sistema funzionare.
+antifrode su grafo, open banking PSD3. Ogni repo condivide lo stesso
+standard: numeri misurati, non aggettivi; ADR per ogni decisione non ovvia;
+`make demo` come unico comando richiesto per vedere il sistema funzionare.
