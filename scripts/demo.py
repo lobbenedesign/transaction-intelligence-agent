@@ -55,7 +55,10 @@ def main() -> None:
     precision = len(true_positives) / len(detected_merchants) if detected_merchants else 0.0
     recall = len(true_positives) / len(ground_truth) if ground_truth else 0.0
 
-    print(f"\nRilevamento pagamenti ricorrenti: {elapsed_ms:.1f} ms per {len(dataset.transactions)} transazioni")
+    print(
+        f"\nRilevamento pagamenti ricorrenti: {elapsed_ms:.1f} ms per "
+        f"{len(dataset.transactions)} transazioni"
+    )
     print(f"  precision={precision:.2%}  recall={recall:.2%}  (ground truth: {len(ground_truth)} serie note)")
     print(f"  serie rilevate ({len(series)}):")
     for s in series:
